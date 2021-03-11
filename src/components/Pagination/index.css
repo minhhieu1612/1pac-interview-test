@@ -1,0 +1,18 @@
+.pagination {
+  display: flex;
+  padding: 5px;
+}
+
+.pagination .pagination-item {
+  padding: 5px 8px;
+  margin: 0px 5px;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+}
+
+.pagination .pagination-item.active,
+.pagination .pagination-item:hover {
+  cursor: pointer;
+  background: var(--primary);
+  color: white;
+}

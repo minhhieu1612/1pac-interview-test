@@ -1,0 +1,4 @@
+export const DEFAULT_FRAME_WIDTH = 600;
+export const DEFAULT_FRAME_HEIGHT = 400;
+export const DEFAULT_LOADING_GIF_WIDTH = 80;
+export const DEFAULT_THRESHOLD = 0.9;
