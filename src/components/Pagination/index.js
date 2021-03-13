@@ -11,16 +11,28 @@ class Pagination extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentPage: this.props.currentPage || DEFAULT_STATE.CURRENT_PAGE,
-      totalPage: this.props.totalPage || DEFAULT_STATE.TOTAL_PAGE,
-      numberPageShow:
-        this.props.numberPageShow || DEFAULT_STATE.NUMBER_PAGE_SHOW,
+      currentPage: this.props.currentPage,
+      totalPage: this.props.totalPage,
+      numberPageShow: this.props.numberPageShow,
     };
   }
 
   componentDidMount() {
     this.checkParameter();
     this.calculatePage();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.totalPage !== this.props.totalPage) {
+      this.setState(
+        {
+          currentPage: this.props.currentPage,
+          totalPage: this.props.totalPage,
+          numberPageShow: this.props.numberPageShow,
+        },
+        () => this.calculatePage()
+      );
+    }
   }
 
   checkParameter = () => {
@@ -88,8 +100,13 @@ class Pagination extends React.Component {
     if (pageSelected < 1 || pageSelected > this.state.totalPage) {
       return;
     }
-    this.setState({ currentPage: pageSelected }, () => {
-      this.calculatePage();
+
+    this.props.onChangePage(pageSelected, () => {
+      this.setState({ currentPage: pageSelected }, () => {
+        (this.state.currentPage > this.state.lastPage ||
+          this.state.currentPage < this.state.firstPage) &&
+          this.calculatePage();
+      });
     });
   };
 

@@ -28,23 +28,19 @@ const DEFAULT_TAB_KEY = {
   },
 };
 
-const NUMBER_ITEM_SHOW = 10;
-
+const NUMBER_ITEM_SHOW = 9;
+const DEFAULT_NUMBER_PAGE_SHOW = 5;
 export default class ListItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       tabIndex: DEFAULT_STATE.TAB_INDEX,
+      pageSelected: {
+        all: 1,
+        liked: 1,
+        removed: 1,
+      },
     };
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.items !== this.props.items) {
-      console.log("zooo");
-
-      return true;
-    }
-    return false;
   }
 
   renderItem = (item) => {
@@ -114,6 +110,39 @@ export default class ListItem extends React.Component {
     );
   };
 
+  renderTab = (dataItems) => {
+    return Object.values(DEFAULT_TAB_KEY).map(
+      ({ KEY, LABEL }) =>
+        this.state.tabIndex === KEY && (
+          <div className="list-pane__item">
+            <div className="row">
+              {dataItems[KEY].slice(
+                NUMBER_ITEM_SHOW *
+                  (this.state.pageSelected[LABEL.toLowerCase()] - 1),
+                NUMBER_ITEM_SHOW * this.state.pageSelected[LABEL.toLowerCase()]
+              ).map((item) => this.renderItem(item))}
+            </div>
+            <Pagination
+              currentPage={this.state.pageSelected[LABEL.toLowerCase()]}
+              totalPage={parseInt(dataItems[KEY].length / NUMBER_ITEM_SHOW) + 1}
+              numberPageShow={DEFAULT_NUMBER_PAGE_SHOW}
+              onChangePage={(pageSelected, callback) => {
+                this.setState(
+                  {
+                    pageSelected: {
+                      ...this.state.pageSelected,
+                      [LABEL.toLowerCase()]: pageSelected,
+                    },
+                  },
+                  callback
+                );
+              }}
+            />
+          </div>
+        )
+    );
+  };
+
   render() {
     const dataItems = {
       [DEFAULT_TAB_KEY.ALL.KEY]: (this.props.items || []).filter(
@@ -143,52 +172,7 @@ export default class ListItem extends React.Component {
             </div>
           ))}
         </div>
-        <div className="list-pane">
-          {Object.values(DEFAULT_TAB_KEY).map(
-            ({ KEY, LABEL }) =>
-              this.state.tabIndex === KEY && (
-                <div className="list-pane__item">
-                  <div className="row">
-                    {dataItems[KEY].map((item) => this.renderItem(item))}
-                  </div>
-                  <Pagination
-                    currentPage={1}
-                    totalPage={
-                      parseInt(dataItems[KEY].length / NUMBER_ITEM_SHOW) + 1
-                    }
-                    numberPageShow={5}
-                  />
-                </div>
-              )
-          )}
-          {/* {this.state.tabIndex === DEFAULT_TAB_KEY.ALL.KEY && (
-            <div className="list-pane__item">
-              <div className="row">
-                {dataItems[DEFAULT_TAB_KEY.ALL.KEY].map((item) =>
-                  this.renderItem(item)
-                )}
-              </div>
-            </div>
-          )}
-          {this.state.tabIndex === DEFAULT_TAB_KEY.LIKED.KEY && (
-            <div className="list-pane__item">
-              <div className="row">
-                {dataItems[DEFAULT_TAB_KEY.LIKED.KEY].map((item) =>
-                  this.renderItem(item)
-                )}
-              </div>
-            </div>
-          )}
-          {this.state.tabIndex === DEFAULT_TAB_KEY.REMOVED.KEY && (
-            <div className="list-pane__item">
-              <div className="row">
-                {dataItems[DEFAULT_TAB_KEY.REMOVED.KEY].map((item) =>
-                  this.renderItem(item)
-                )}
-              </div>
-            </div>
-          )} */}
-        </div>
+        <div className="list-pane">{this.renderTab(dataItems)}</div>
       </div>
     );
   }
