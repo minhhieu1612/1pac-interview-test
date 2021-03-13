@@ -1,0 +1,99 @@
+.list {
+  padding: 10px;
+}
+.list-tab {
+  list-style: none;
+  display: flex;
+  padding: 0px;
+  margin: 20px 0px;
+  border-bottom: 1px solid var(--primary);
+}
+
+.list-tab__item {
+  padding: 10px 40px;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  border-bottom: 0;
+  cursor: pointer;
+}
+
+.list-tab__item.active {
+  background: var(--primary);
+  color: white;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin: 0 -10px;
+}
+
+.col {
+  position: relative;
+  width: 33.3333%;
+  padding: 10px;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  padding: 15px;
+  box-shadow: 0 0 8px -1px rgb(0 0 0 / 20%);
+}
+
+.card-img {
+  position: relative;
+  padding-bottom: 36%;
+  background-color: gainsboro;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.card-body {
+  position: relative;
+  min-height: 160px;
+}
+
+.card-body__title {
+  color: var(--text-title);
+}
+
+.card-body__content {
+  color: var(--text-content);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+.card-body__option {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  top: calc(100% - 32px);
+  width: 100%;
+  padding: 10px 0px 0px;
+  border-top: 1px solid var(--line-color);
+}
+
+.card-body__option--item {
+  font-size: 20px;
+  margin-right: 10px;
+  cursor: pointer;
+  color: var(--secondary);
+}
+
+.card-body__option--item.active {
+  color: var(--danger);
+}
+
+.card-body__option--item:hover {
+  transform: scale(1.1);
+}
+
+.card-body__option--item:last-child {
+  margin-right: 0px;
+}

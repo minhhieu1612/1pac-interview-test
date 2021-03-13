@@ -1,8 +1,7 @@
 import React from "react";
 import {
-  DEFAULT_FRAME_HEIGHT,
-  DEFAULT_FRAME_WIDTH,
   DEFAULT_LOADING_GIF_WIDTH,
+  DEFAULT_ROOT_MARGIN,
   DEFAULT_THRESHOLD,
 } from "./constants";
 import loadingGif from "./loading.gif";
@@ -21,7 +20,7 @@ class LazyLoad extends React.Component {
   componentDidMount() {
     const defaultIntersectionOptions = {
       threshold: DEFAULT_THRESHOLD,
-      rootMargin: "0px",
+      rootMargin: DEFAULT_ROOT_MARGIN,
     };
 
     const checkIntersections = (entries) => {
@@ -49,26 +48,18 @@ class LazyLoad extends React.Component {
     return (
       <div
         ref={this.rootRef}
-        className="lazy-load"
-        style={{
-          width: (this.props.width || DEFAULT_FRAME_WIDTH) + "px",
-          height: (this.props.height || DEFAULT_FRAME_HEIGHT) + "px",
-          ...this.props.wrapStyles,
-        }}
+        className={"lazy-load " + (this.state.visible ? "hide" : "")}
+        style={this.props.wrapStyles}
       >
-        {!this.state.visible ? (
-          // eslint-disable-next-line jsx-a11y/alt-text
-          <img
-            className="loading"
-            src={loadingGif}
-            style={{
-              width: DEFAULT_LOADING_GIF_WIDTH + "px",
-              ...this.props.loadingStyle,
-            }}
-          />
-        ) : (
-          this.props.children
-        )}
+        {/* eslint-disable-next-line jsx-a11y/alt-text */}
+        <img
+          className="loading"
+          src={loadingGif}
+          style={{
+            width: DEFAULT_LOADING_GIF_WIDTH + "px",
+            ...this.props.loadingStyles,
+          }}
+        />
       </div>
     );
   }

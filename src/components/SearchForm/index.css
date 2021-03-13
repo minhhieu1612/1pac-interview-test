@@ -1,0 +1,49 @@
+.form {
+  padding: 10px;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-group__label {
+  margin-right: 10px;
+}
+
+.form-group__label-required {
+  position: relative;
+}
+
+.form-group__label-required::after {
+  content: "*";
+  position: absolute;
+  top: 0;
+  left: 100%;
+  color: red;
+}
+
+.btn {
+  color: var(--primary);
+  background: white;
+  cursor: pointer;
+  border: 1px solid;
+  padding: 4px 10px;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+.btn.btn-primary {
+  color: white;
+  background: var(--primary);
+}
+
+.btn.btn-secondary {
+  color: white;
+  background: var(--secondary);
+}
+
+.message-error {
+  color: var(--danger);
+}

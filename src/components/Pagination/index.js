@@ -1,19 +1,20 @@
 import React from "react";
-import {
-  DEFAULT_CURRENT_PAGE,
-  DEFAULT_FIRST_PAGE,
-  DEFAULT_MIDDLE_PAGE,
-  DEFAULT_TOTAL_PAGE,
-} from "./constants";
 import "./index.css";
 
+const DEFAULT_FIRST_PAGE = 1;
+const DEFAULT_STATE = {
+  CURRENT_PAGE: 1,
+  TOTAL_PAGE: 1,
+  NUMBER_PAGE_SHOW: 1,
+};
 class Pagination extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentPage: props.currentPage || DEFAULT_CURRENT_PAGE,
-      totalPage: props.totalPage || DEFAULT_TOTAL_PAGE,
-      numberPageShow: props.numberPageShow || DEFAULT_MIDDLE_PAGE,
+      currentPage: this.props.currentPage || DEFAULT_STATE.CURRENT_PAGE,
+      totalPage: this.props.totalPage || DEFAULT_STATE.TOTAL_PAGE,
+      numberPageShow:
+        this.props.numberPageShow || DEFAULT_STATE.NUMBER_PAGE_SHOW,
     };
   }
 
@@ -38,15 +39,22 @@ class Pagination extends React.Component {
       throw Error("Parameter 'currentPage' is out of range!!!");
     }
 
-    if (
-      this.state.numberPageShow > this.totalPage ||
-      this.state.numberPageShow < DEFAULT_FIRST_PAGE
-    ) {
+    if (this.state.numberPageShow < DEFAULT_FIRST_PAGE) {
       throw Error("Parameter 'numberPageShow' is out of range!!!");
     }
   };
 
   calculatePage = () => {
+    if (this.state.numberPageShow > this.state.totalPage) {
+      this.setState({
+        numberPageShow: this.state.totalPage,
+        lastPage: this.state.totalPage,
+        firstPage: DEFAULT_FIRST_PAGE,
+        middlePage: this.state.totalPage / 2 + 1,
+      });
+      return;
+    }
+
     if (
       this.state.currentPage + (this.state.numberPageShow / 2 + 1) >=
       this.state.totalPage
@@ -56,22 +64,24 @@ class Pagination extends React.Component {
         firstPage: this.state.totalPage - this.state.numberPageShow + 1,
         middlePage: (this.state.firstPage + this.state.lastPage) / 2,
       });
-    } else if (
-      this.state.currentPage - (this.state.numberPageShow / 2 + 1) <
-      1
-    ) {
+      return;
+    }
+    if (this.state.currentPage - (this.state.numberPageShow / 2 + 1) < 1) {
       this.setState({
         firstPage: 1,
         lastPage: this.state.numberPageShow,
         middlePage: (this.state.firstPage + this.state.lastPage) / 2,
       });
-    } else {
-      this.setState({
-        firstPage: this.state.currentPage - (this.state.numberPageShow / 2 + 1),
-        lastPage: this.state.currentPage + (this.state.numberPageShow / 2 + 1),
-        middlePage: (this.state.firstPage + this.state.lastPage) / 2,
-      });
+      return;
     }
+
+    this.setState({
+      firstPage:
+        this.state.currentPage - parseInt(this.state.numberPageShow / 2),
+      lastPage:
+        this.state.currentPage + parseInt(this.state.numberPageShow / 2),
+      middlePage: (this.state.firstPage + this.state.lastPage) / 2,
+    });
   };
 
   handleChangePage = (pageSelected) => {
