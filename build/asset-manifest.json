@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/static/css/main.acca2ceb.chunk.css",
-    "main.js": "/static/js/main.f5fe57fa.chunk.js",
-    "main.js.map": "/static/js/main.f5fe57fa.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.22b0718f.js",
-    "runtime-main.js.map": "/static/js/runtime-main.22b0718f.js.map",
-    "static/js/2.ae610c81.chunk.js": "/static/js/2.ae610c81.chunk.js",
-    "static/js/2.ae610c81.chunk.js.map": "/static/js/2.ae610c81.chunk.js.map",
-    "static/js/3.53bb0112.chunk.js": "/static/js/3.53bb0112.chunk.js",
-    "static/js/3.53bb0112.chunk.js.map": "/static/js/3.53bb0112.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/main.acca2ceb.chunk.css.map": "/static/css/main.acca2ceb.chunk.css.map",
-    "static/js/2.ae610c81.chunk.js.LICENSE.txt": "/static/js/2.ae610c81.chunk.js.LICENSE.txt",
-    "static/media/loading.30c0aa7c.gif": "/static/media/loading.30c0aa7c.gif"
+    "main.css": "/1pac-interview-test/static/css/main.acca2ceb.chunk.css",
+    "main.js": "/1pac-interview-test/static/js/main.f5fe57fa.chunk.js",
+    "main.js.map": "/1pac-interview-test/static/js/main.f5fe57fa.chunk.js.map",
+    "runtime-main.js": "/1pac-interview-test/static/js/runtime-main.1ea509e5.js",
+    "runtime-main.js.map": "/1pac-interview-test/static/js/runtime-main.1ea509e5.js.map",
+    "static/js/2.9f5578c0.chunk.js": "/1pac-interview-test/static/js/2.9f5578c0.chunk.js",
+    "static/js/2.9f5578c0.chunk.js.map": "/1pac-interview-test/static/js/2.9f5578c0.chunk.js.map",
+    "static/js/3.53bb0112.chunk.js": "/1pac-interview-test/static/js/3.53bb0112.chunk.js",
+    "static/js/3.53bb0112.chunk.js.map": "/1pac-interview-test/static/js/3.53bb0112.chunk.js.map",
+    "index.html": "/1pac-interview-test/index.html",
+    "static/css/main.acca2ceb.chunk.css.map": "/1pac-interview-test/static/css/main.acca2ceb.chunk.css.map",
+    "static/js/2.9f5578c0.chunk.js.LICENSE.txt": "/1pac-interview-test/static/js/2.9f5578c0.chunk.js.LICENSE.txt",
+    "static/media/loading.30c0aa7c.gif": "/1pac-interview-test/static/media/loading.30c0aa7c.gif"
   },
   "entrypoints": [
-    "static/js/runtime-main.22b0718f.js",
-    "static/js/2.ae610c81.chunk.js",
+    "static/js/runtime-main.1ea509e5.js",
+    "static/js/2.9f5578c0.chunk.js",
     "static/css/main.acca2ceb.chunk.css",
     "static/js/main.f5fe57fa.chunk.js"
   ]
